@@ -1,0 +1,65 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../google-map/google-map.html">
+<link rel="import" href="../google-sheets/google-sheets.html">
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <barcamp-map></barcamp-map>
+
+@demo
+-->
+<dom-module id="barcamp-map">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+      min-height: 200px;
+    }
+
+    .author img {
+      float: left;
+      margin-right: 5px;
+      max-height: 100px;
+      max-width: 100px;
+    }
+
+    google-map {
+      height: 100%;
+      width: 100%;
+      min-height: 200px;
+    }
+  </style>
+
+  <template>    
+    <google-sheets
+      key="1obZFGO0HZku7h4_5YgTGnkU6_h8k0zl-Bq-daQihAe0" rows="{{rows}}" published>
+    </google-sheets>
+
+    <google-map fit-to-markers>
+      <template is="dom-repeat" items="[[rows]]">
+        <google-map-marker info="{{item.gsx$name.$t}]" latitude="{{item.gsx$lat.$t}}" longitude="{{item.gsx$lng.$t}}"></google-map-marker>
+      </template>
+    </google-map>
+
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'barcamp-map'
+  });
+
+</script>
